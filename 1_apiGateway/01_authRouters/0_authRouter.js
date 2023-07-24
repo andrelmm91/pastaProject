@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
+// functionalities
 const { provide } = require("./provide");
 const { validate } = require("./validate");
 
 ///////////////////////////////////////
-// provide a token based on user email
+// router for provide a token based on user email
 router.post("/provide", async (req, res) => {
   const email = req.body.email;
 
@@ -18,7 +19,7 @@ router.post("/provide", async (req, res) => {
 });
 
 //////////////////////
-// validate the token
+// router for validate the token
 router.post("/validate", async (req, res) => {
   const token = req.body.token;
 

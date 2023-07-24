@@ -1,13 +1,12 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+
+const authToken = require("./routes/authToken");
+
 const app = express();
 
-//routers
-const authRouter = require("./01_authRouters/0_authRouter");
-const userRouter = require("./02_userRouters/0_userRouter");
-
-// initial set parameters
 app.use(bodyParser.json()); // body parser receving data
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST");
@@ -15,9 +14,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// // routing
-app.use("/auth", authRouter);
-app.use("/user", userRouter);
+// // SERVICES
+// /provide > Input: Email | output: {Token}
+// /validate > Input: Token | output: {Validation: Boolen, Token}
+app.use(authToken);
 
 // // handlers
 // Error handler
@@ -27,4 +27,4 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message });
 });
 
-app.listen(8080);
+app.listen(8083);
