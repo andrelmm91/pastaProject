@@ -1,6 +1,6 @@
 const express = require("express");
-const { createJSONToken, validateJSONToken } = require("../util/auth");
-const { isValidEmail } = require("../util/validation");
+const { createJSONToken, validateJSONToken } = require("../01_handlers/auth");
+const { isValidEmail } = require("../01_handlers/validation");
 
 const router = express.Router();
 

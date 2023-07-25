@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 
-const authToken = require("./routes/authToken");
+const authToken = require("./00_routes/authToken");
 
 const app = express();
 

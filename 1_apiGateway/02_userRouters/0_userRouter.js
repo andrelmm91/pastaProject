@@ -2,21 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 // functionaties
-const { createUser } = require("./createUser");
-const { editUser } = require("./editUser");
-const { readUser } = require("./readUser");
-const { deleteUser } = require("./deleteUser");
+const { userCrudHandler } = require("./userCrudHandler");
 
 //protected Routers
-
 ///////////////////////////////////////
 // router to CREATE a user
 router.post("/create", async (req, res) => {
   verifyAuth(req.body.token);
   const data = req.body;
+  const crudOperations = "POST";
+  const crudDestination = "create";
 
   try {
-    const res = await createUser(data);
+    const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(201).json(res);
   } catch {
     console.log("error in creating a user ", data);
@@ -28,9 +26,11 @@ router.post("/create", async (req, res) => {
 router.post("/edit", async (req, res) => {
   verifyAuth(req.body.token);
   const data = req.body;
+  const crudOperations = "PATCH";
+  const crudDestination = "edit";
 
   try {
-    const res = await editUser(data);
+    const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
   } catch {
     console.log("error in editing a user ", data);
@@ -42,9 +42,11 @@ router.post("/edit", async (req, res) => {
 router.post("/read", async (req, res) => {
   verifyAuth(req.body.token);
   const data = req.body;
+  const crudOperations = "GET";
+  const crudDestination = "read";
 
   try {
-    const res = await readUser(data);
+    const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
   } catch {
     console.log("error in reading a user ", data);
@@ -56,9 +58,11 @@ router.post("/read", async (req, res) => {
 router.post("/delete", async (req, res) => {
   verifyAuth(req.body.token);
   const data = req.body;
+  const crudOperations = "DELETE";
+  const crudDestination = "delete";
 
   try {
-    const res = await deleteUser(data);
+    const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
   } catch {
     console.log("error in deleting a user ", data);
