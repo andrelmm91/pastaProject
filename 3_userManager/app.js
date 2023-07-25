@@ -8,8 +8,8 @@ const app = express();
 app.use(bodyParser.json()); // body parser receving data
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PATCH");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
@@ -27,4 +27,4 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message });
 });
 
-app.listen(8083);
+app.listen(8084);
