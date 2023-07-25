@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 
-const authToken = require("./routes/authToken");
+const userRouter = require("./00_routes/userRouter");
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 // // SERVICES
 // /provide > Input: Email | output: {Token}
 // /validate > Input: Token | output: {Validation: Boolen, Token}
-app.use(authToken);
+app.use(userRouter);
 
 // // handlers
 // Error handler
