@@ -1,7 +1,7 @@
 const { sign, verify } = require("jsonwebtoken");
 const KEY = "supersecret";
 
-function createJSONToken(email) {
+function createToken(email) {
   return sign({ email }, KEY, { expiresIn: "1h" });
 }
 
@@ -9,7 +9,7 @@ function verifyToken(token) {
   return verify(token, KEY);
 }
 
-function validateJSONToken(token) {
+function validateToken(token) {
   try {
     const validatedToken = verifyToken(token);
     return true;
@@ -18,5 +18,5 @@ function validateJSONToken(token) {
   }
 }
 
-exports.createJSONToken = createJSONToken;
-exports.validateJSONToken = validateJSONToken;
+exports.createToken = createToken;
+exports.validateToken = validateToken;

@@ -2,20 +2,21 @@ const express = require("express");
 const router = express.Router();
 
 // functionalities
-const { provide } = require("./provide");
-const { validate } = require("./validate");
+const { createToken, validateToken } = require("./tokenHandler");
 
 ///////////////////////////////////////
 // router for provide a token based on user email
 router.post("/provide", async (req, res) => {
   const email = req.body.email;
-
-  try {
-    const token = await provide(email);
-    res.status(201).json(token);
-  } catch {
-    console.log("error in providing a token for ", email);
+  if (!isValidEmail(email)) {
+    return res.status(422).json({
+      message: "Cannot provide a token. Email is invalid.",
+    });
   }
+
+  const token = createToken(email);
+
+  res.status(200).json({ message: "Token created.", token: token });
 });
 
 //////////////////////
@@ -23,12 +24,15 @@ router.post("/provide", async (req, res) => {
 router.post("/validate", async (req, res) => {
   const token = req.body.token;
 
-  try {
-    const authCheck = await validate(token);
-    res.json(authCheck);
-  } catch {
-    console.log("error in validating the token ", token);
-  }
+  const validation = await validateToken(token);
+
+  res.json({ validation: validation, token: token });
 });
+
+/////////////////////////
+// validating email
+function isValidEmail(value) {
+  return value && value.includes("@");
+}
 
 module.exports = router;
