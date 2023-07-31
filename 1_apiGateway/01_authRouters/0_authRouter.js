@@ -25,6 +25,7 @@ router.post("/validate", async (req, res) => {
   const token = req.body.token;
 
   const validation = await validateToken(token);
+  console.log("the token is: ", validation);
 
   res.json({ validation: validation, token: token });
 });

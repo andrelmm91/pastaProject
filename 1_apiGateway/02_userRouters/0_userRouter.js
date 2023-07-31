@@ -3,12 +3,15 @@ const router = express.Router();
 
 // functionaties
 const { userCrudHandler } = require("./userCrudHandler");
+const { protRouter } = require("../00_ProtectedRoute/0_protRouter");
 
 //protected Routers
 ///////////////////////////////////////
 // router to CREATE a user
 router.post("/create", async (req, res) => {
-  verifyAuth(req.body.token);
+  console.log("I passed here first", req.body.token);
+  protRouter({ token: req.body.token });
+
   const data = req.body;
   const crudOperations = "POST";
   const crudDestination = "create";
@@ -24,7 +27,6 @@ router.post("/create", async (req, res) => {
 ///////////////////////////////////////
 // router to EDIT a user
 router.post("/edit", async (req, res) => {
-  verifyAuth(req.body.token);
   const data = req.body;
   const crudOperations = "PATCH";
   const crudDestination = "edit";
@@ -40,7 +42,6 @@ router.post("/edit", async (req, res) => {
 ///////////////////////////////////////
 // router to READ a user
 router.post("/read", async (req, res) => {
-  verifyAuth(req.body.token);
   const data = req.body;
   const crudOperations = "GET";
   const crudDestination = "read";
@@ -56,7 +57,6 @@ router.post("/read", async (req, res) => {
 ///////////////////////////////////////
 // router to DELETE a user
 router.post("/delete", async (req, res) => {
-  verifyAuth(req.body.token);
   const data = req.body;
   const crudOperations = "DELETE";
   const crudDestination = "delete";
