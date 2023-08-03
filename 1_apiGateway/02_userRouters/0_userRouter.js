@@ -12,16 +12,16 @@ router.post("/create", async (req, res) => {
   console.log("I passed here first", req.body.token);
   protRouter({ token: req.body.token });
 
-  const data = req.body;
-  const crudOperations = "POST";
-  const crudDestination = "create";
+  // const data = req.body;
+  // const crudOperations = "POST";
+  // const crudDestination = "create";
 
-  try {
-    const res = await userCrudHandler(crudOperations, crudDestination, data);
-    res.status(201).json(res);
-  } catch {
-    console.log("error in creating a user ", data);
-  }
+  // try {
+  //   const res = await userCrudHandler(crudOperations, crudDestination, data);
+  //   res.status(201).json(res);
+  // } catch {
+  //   console.log("error in creating a user ", data);
+  // }
 });
 
 ///////////////////////////////////////

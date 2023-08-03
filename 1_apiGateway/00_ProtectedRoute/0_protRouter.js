@@ -1,24 +1,21 @@
 // functionalities
 const { validateToken } = require("../01_authRouters/tokenHandler");
 
-async function protRouter(token, req, res, next) {
-  // const token = req.body.token;
-  console.log("I passed here second", token);
-
-  const validation = await validateToken(token.token);
-  console.log("the token is: ", validation);
+async function protRouter({ token }, req, res, next) {
+  const validation = await validateToken(token);
+  console.log("the token is aaa: ", validation);
 
   try {
     if (!validation) {
-      console.log("not authorized or token expired.", validation);
+      console.error("not authorized or token expired.", validation);
       res.status(403).json("unathorized access");
     } else {
-      console.log("authorized");
+      console.error("authorized");
       // return true; // token valid, continue with routing
-      next();
+      return;
     }
   } catch {
-    console.log("error in validating the token ", token);
+    console.error("error in validating the token ", token);
   }
 }
 
