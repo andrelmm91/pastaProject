@@ -5,6 +5,7 @@ const app = express();
 //routers
 const authRouter = require("./01_authRouters/0_authRouter");
 const userRouter = require("./02_userRouters/0_userRouter");
+const protRoute = require("./00_ProtectedRoute/0_protRouter");
 
 // initial set parameters
 app.use(bodyParser.json()); // body parser receving data
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 
 // // routing
 app.use("/auth", authRouter);
+app.use(protRoute);
 app.use("/user", userRouter);
 
 // // handlers

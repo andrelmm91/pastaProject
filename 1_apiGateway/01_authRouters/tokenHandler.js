@@ -12,9 +12,9 @@ function verifyToken(token) {
 function validateToken(token) {
   try {
     const validatedToken = verifyToken(token);
-    return true;
+    return { validation: true, ...validatedToken };
   } catch (error) {
-    return false;
+    return { validation: false };
   }
 }
 

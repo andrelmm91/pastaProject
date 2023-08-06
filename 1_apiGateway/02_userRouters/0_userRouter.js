@@ -3,14 +3,13 @@ const router = express.Router();
 
 // functionaties
 const { userCrudHandler } = require("./userCrudHandler");
-const { protRouter } = require("../00_ProtectedRoute/0_protRouter");
 
 //protected Routers
 ///////////////////////////////////////
 // router to CREATE a user
 router.post("/create", async (req, res) => {
-  console.log("I passed here first", req.body.token);
-  protRouter({ token: req.body.token });
+  console.log("I passed here first");
+  // protRouter({ token: req.body.token });
 
   // const data = req.body;
   // const crudOperations = "POST";

@@ -26,7 +26,7 @@ router.post("/validate", async (req, res) => {
 
   const validation = await validateToken(token);
 
-  res.json({ validation: validation, token: token });
+  res.json(validation);
 });
 
 /////////////////////////
