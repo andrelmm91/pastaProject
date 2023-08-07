@@ -1,5 +1,5 @@
 async function userCrudHandler({ crudOperations, crudDestination, data }) {
-  const response = await fetch("http://localhost:8084/" + crudDestination, {
+  const response = await fetch("http://localhost:8081/" + crudDestination, {
     method: crudOperations,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: data }),

@@ -12,14 +12,16 @@ module.exports = async (req, res, next) => {
     console.log("I passed here auth 2", decodedToken);
 
     if (decodedToken.validation && req.body.email === userEmail) {
-      console.log("I passed here auth 3 authed");
+      console.log("authorized");
       next();
     } else {
+      console.log("NOT authorized");
       res.status(401).json({
         error: "Invalid request or unanthorized",
       });
     }
   } catch {
+    console.log("NOT authorized");
     res.status(401).json({
       error: "Invalid request or unanthorized",
     });

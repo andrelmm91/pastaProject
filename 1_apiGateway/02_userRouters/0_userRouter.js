@@ -9,18 +9,18 @@ const { userCrudHandler } = require("./userCrudHandler");
 // router to CREATE a user
 router.post("/create", async (req, res) => {
   console.log("I passed here first");
-  // protRouter({ token: req.body.token });
 
-  // const data = req.body;
-  // const crudOperations = "POST";
-  // const crudDestination = "create";
+  const data = req.body;
+  const crudOperations = "POST";
+  const crudDestination = "create";
 
-  // try {
-  //   const res = await userCrudHandler(crudOperations, crudDestination, data);
-  //   res.status(201).json(res);
-  // } catch {
-  //   console.log("error in creating a user ", data);
-  // }
+  try {
+    const res = await userCrudHandler(crudOperations, crudDestination, data);
+    res.status(201).json(res);
+  } catch (error) {
+    console.log("error in creating a user ", data);
+    res.status(400).json(error);
+  }
 });
 
 ///////////////////////////////////////
@@ -33,8 +33,9 @@ router.post("/edit", async (req, res) => {
   try {
     const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
-  } catch {
-    console.log("error in editing a user ", data);
+  } catch (error) {
+    console.log("error in creating a user ", data);
+    res.status(400).json(error);
   }
 });
 
@@ -48,8 +49,9 @@ router.post("/read", async (req, res) => {
   try {
     const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
-  } catch {
-    console.log("error in reading a user ", data);
+  } catch (error) {
+    console.log("error in creating a user ", data);
+    res.status(400).json(error);
   }
 });
 
@@ -63,8 +65,9 @@ router.post("/delete", async (req, res) => {
   try {
     const res = await userCrudHandler(crudOperations, crudDestination, data);
     res.status(200).json(res);
-  } catch {
-    console.log("error in deleting a user ", data);
+  } catch (error) {
+    console.log("error in creating a user ", data);
+    res.status(400).json(error);
   }
 });
 
