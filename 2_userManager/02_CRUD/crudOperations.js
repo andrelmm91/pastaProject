@@ -28,3 +28,5 @@ async function add(data) {
       console.log(err);
     });
 }
+
+exports.add = add;

@@ -1,9 +1,13 @@
-const { dataBaseName, mongodbPassword } = require("./mongodbPassword");
+const { dataBaseName, mongoDbCredentials } = require("./mongodbPassword");
 
 const mongodbConnection =
-  "mongodb+srv://andrelmm91:" +
-  mongodbPassword +
-  "@cluster1.ryao6zt.mongodb.net/" +
+  "mongodb+srv://" +
+  mongoDbCredentials.userName +
+  ":" +
+  mongoDbCredentials.password +
+  "@" +
+  mongoDbCredentials.cluster +
+  "/" +
   dataBaseName +
   "?retryWrites=true&w=majority";
 

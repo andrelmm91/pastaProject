@@ -1,12 +1,30 @@
 const express = require("express");
-
 const router = express.Router();
-const User = require("../01_dataModel/userDataModel");
+
+const { add } = require("../02_CRUD/crudOperations");
 
 ///////////////////////////////////////
 // provide a token based on user email
-router.post("/create", async (req, res) => {
-  res.status(200).json({ message: "Token created.", token: token });
+router.post("/create", async (req, res, next) => {
+  const data = req.body;
+  //validation
+
+  //adding user
+  try {
+    await add(data);
+    console.log("user created");
+    res.json({ message: "User saved.", userCreated: true });
+    next();
+  } catch {
+    (err) => {
+      console.log("user creation failed");
+      res.json({
+        message: "User could not be created.",
+        error: err,
+        userCreated: false,
+      });
+    };
+  }
 });
 
 //////////////////////

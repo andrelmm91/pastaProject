@@ -7,9 +7,9 @@ const userSchema = new Schema({
   firstName: { type: String, required: true },
   surname: { type: String, required: true },
   password: { type: String, required: true },
-  createdAt: { type: Date, required: true },
+  createdAt: { type: String, required: true },
   address: { type: String },
   phone: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("User", userSchema, "collectionEvent");
+module.exports = mongoose.model("User", userSchema, "UserCollection");
