@@ -15,7 +15,7 @@ router.post("/create", async (req, res) => {
   try {
     const result = await userCrudHandler(crudOperations, crudDestination, data);
     console.log("I got a result", result);
-    res.status(201).json(result);
+    res.json(result);
   } catch (err) {
     console.log("Error in creating a user: ", err);
     res.status(400).json({ message: "UM couldn't create a user", error: err });

@@ -1,4 +1,4 @@
-const { dataBaseName, mongoDbCredentials } = require("./mongodbPassword");
+const { dataBaseName, mongoDbCredentials } = require("./mongoDbCredentials");
 
 const mongodbConnection =
   "mongodb+srv://" +

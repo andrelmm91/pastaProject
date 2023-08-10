@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { authHandler } = require("./authHandler");
+const { authHandler, validateToken } = require("./authHandler");
 
 ///////////////////////////////////////
 // router for provide a token based on user email
 router.post("/provide", async (req, res) => {
   const data = req.body;
-  const crudOperations = "POST";
   const crudDestination = "provide";
 
   if (!isValidEmail(data.email)) {
@@ -17,7 +16,7 @@ router.post("/provide", async (req, res) => {
   }
 
   try {
-    const response = await authHandler(crudOperations, crudDestination, data);
+    const response = await authHandler(crudDestination, data);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ message: "Token NOT created.", error: error });
@@ -28,15 +27,14 @@ router.post("/provide", async (req, res) => {
 // router for validate the token
 router.post("/validate", async (req, res) => {
   const data = req.body;
-  const crudOperations = "POST";
   const crudDestination = "validate";
 
-  try {
-    const response = await authHandler(crudOperations, crudDestination, data);
-    res.status(200).json(response);
-  } catch (error) {
+  const response = await validateToken(crudDestination, data);
+
+  if (!response) {
     res.status(500).json({ message: "Token NOT validated.", error: error });
   }
+  res.status(200).json(response);
 });
 
 /////////////////////////

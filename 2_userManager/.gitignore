@@ -2,7 +2,7 @@
 
 # keys
 src/mapsKeys
-mongodbPassword.js
+mongoDbCredentials.js
 
 # dependencies
 /node_modules

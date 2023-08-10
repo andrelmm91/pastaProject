@@ -1,4 +1,4 @@
-async function authHandler(crudOperations, crudDestination, data) {
+async function authHandler(crudDestination, data) {
   // console.log(
   //   "destination is " + crudDestination,
   //   "data is " + data,
@@ -6,7 +6,7 @@ async function authHandler(crudOperations, crudDestination, data) {
   // );
 
   const response = await fetch("http://localhost:8083/" + crudDestination, {
-    method: crudOperations,
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
@@ -19,4 +19,14 @@ async function authHandler(crudOperations, crudDestination, data) {
   return res;
 }
 
+async function validateToken(crudDestination, data) {
+  try {
+    const response = await authHandler(crudDestination, data);
+    return response;
+  } catch (error) {
+    console.log("could not validate the token", error);
+  }
+}
+
 exports.authHandler = authHandler;
+exports.validateToken = validateToken;
