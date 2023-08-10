@@ -13,7 +13,7 @@ async function userCrudHandler(crudOperations, crudDestination, data) {
 
   if (!response.ok) {
     console.log(
-      "The service UM could not " + crudDestination + " the user!",
+      "The service UserManager could not " + crudDestination + " the user!",
       "data is " + data,
       " and operations is " + crudOperations
     );

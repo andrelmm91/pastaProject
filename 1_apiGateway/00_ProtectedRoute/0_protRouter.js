@@ -1,5 +1,7 @@
 // functionalities
-const { validateToken } = require("../01_authRouters/tokenHandler");
+const {
+  validateToken,
+} = require("../../3_authManager/01_handler/tokenHandler");
 
 module.exports = async (req, res, next) => {
   try {

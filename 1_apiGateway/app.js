@@ -17,7 +17,8 @@ app.use((req, res, next) => {
 });
 
 // // routing
-app.use("/auth", authRouter);
+app.use("/auth/validate", authRouter);
+app.use("/user/create", userRouter);
 app.use(protRoute);
 app.use("/user", userRouter);
 
